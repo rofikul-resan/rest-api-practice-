@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BILLIONAIRE</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.2/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex">
+    <aside class="bg-cyan-900 w-1/4 ">
+        <div class="text-center text-gray-200 border-2 border-emerald-200 m-3 ">
+            <p class="text-2xl font-semibold">BILLIONAIRE</p>
+            <p>DIARY</p>
+        </div>
+
+        <!-- filter button  -->
+        <div class="mt-12">
+            <button onclick="addRandomUser()" class=" text-center bg-slate-100 text-cyan-900 w-11/12 mx-auto mb-3 block py-2"><span class="font-bold text-2xl">Add a user</span><br> (Randomly)</button>
+
+            <button class=" text-center bg-slate-100 text-cyan-900 w-11/12 mx-auto mb-3 block py-2"><span class="font-bold text-2xl">Double Money</span></button>
+
+            <button onclick="topTenRank()" class=" text-center bg-slate-100 text-cyan-900 w-11/12 mx-auto mb-3 block py-2"><span class="font-bold text-2xl">Sort By Rank </span><br> (Decending)</button>
+
+            <button onclick="totalWealth()" class=" text-center bg-slate-100 text-cyan-900 w-11/12 mx-auto mb-3 block py-2"><span class="font-bold text-2xl">Calculate Entire Wealth</span></button>
+
+        </div>
+
+    </aside>
+
+    <main class="flex-1 bg-slate-300">
+        <header class="flex justify-between items-center px-4 h-24 w-full bg-white">
+            <input class="border-b-2 border-cyan-800 pl-3 pb-1 mb-2" onkeypress="useDetails(event)" type="text" placeholder="Search">
+            <img width="80px" class="mr-6" src="./images/logo/logo1.png" alt="">
+        </header>
+
+        <!-- user table section  -->
+        <article >
+            <div class="w-11/12 mx-auto">
+                <h2 class="font-semibold my-10 text-2xl">Hello, User!</h2>
+
+                <table class="w-full">
+                    <thead class="border-b-2 border-gray-800">
+                        <th>Person</th>
+                        <th>Citizenship</th>
+                        <th>Industry</th>
+                        <th>Rank</th>
+                        <th>Wealth</th>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </main>
+
+    
+
+    <script src="./js/fatch-data.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>
