@@ -11,7 +11,6 @@ function firstView(urlKey){
     .then(res => res.json())
     .then(data => lodeCard(data.data))
 }
-firstView("apple")
 
 // display card 
 const displayCard= (cardArr)=>{
@@ -25,7 +24,7 @@ const displayCard= (cardArr)=>{
           <h2 class="card-title">${produce.phone_name}</h2>
           <p>Click the button to view specification.</p>
           <div class="card-actions justify-end">
-            <button class="btn btn-primary">Specification</button>
+            <label onclick="viewSpecification('${produce.slug}')" for="my-modal-3" class="btn btn-primary"  >Specification</label>
           </div>
         </div>
       </div>`
@@ -47,3 +46,27 @@ showMoreBtn.addEventListener("click", ()=>{
     displayCard(apiJson);
     showMoreBtn.classList.add("hidden");
 })
+
+
+function viewSpecification(id){
+    fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
+    .then(res => res.json())
+    .then(data => viewModal(data.data))
+}
+
+function viewModal(data){
+    console.log(data);
+    const modalBox = document.getElementById("modal-box");
+    modalBox.innerHTML= `
+    <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <div class="badge badge-primary badge-outline">${data.brand}</div>
+    <img class="mx-auto mb-3"  src="${data.image}"/>
+    <h2 class="font-semibold text-2xl">${data.name}</h2>
+    <p class="mb-3">${data.releaseDate ? data.releaseDate : 'Release date not available'}</p>
+     <p>storage : ${data.mainFeatures.storage}</p>
+     <p>chipSet : ${data.mainFeatures.chipSet}</p>
+     <p>sensors : ${data.mainFeatures.sensors.join(" , ")}</p>
+      `;
+
+
+}
