@@ -1,3 +1,5 @@
+
+
 function displayInTable(data){
     console.log("c");
     const tbody = document.getElementById("tbody");
