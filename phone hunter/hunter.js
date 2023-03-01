@@ -1,12 +1,25 @@
 const showMoreBtn = document.getElementById("show-more-btn");
 let apiJson = '';
 function foundPhone(e){
-    const urlKey = e.target.previousElementSibling.value;
-    fetch(`https://openapi.programming-hero.com/api/phones?search=${urlKey}`)
+    spinier(true)
+    const urlKey = e.target.previousElementSibling;
+    fetch(`https://openapi.programming-hero.com/api/phones?search=${urlKey.value}`)
     .then(res => res.json())
     .then(data => lodeCard(data.data))
+    urlKey.value = "";
+}
+
+function foundPhoneByEnter(e,value){
+    if(e.key === "Enter"){
+        spinier(true);
+        fetch(`https://openapi.programming-hero.com/api/phones?search=${value}`)
+        .then(res => res.json())
+        .then(data => lodeCard(data.data))
+        e.target.value = "";
+    }
 }
 function firstView(urlKey){
+    spinier(true)
     fetch(`https://openapi.programming-hero.com/api/phones?search=${urlKey}`)
     .then(res => res.json())
     .then(data => lodeCard(data.data))
@@ -36,10 +49,12 @@ const lodeCard = apiData => {
     if(apiData.length > 9){
         const ninePhone = apiData.slice(0,12);
         displayCard(ninePhone);
-    showMoreBtn.classList.remove("hidden");
+        showMoreBtn.classList.remove("hidden");
     }else{
         displayCard(apiData)
+        showMoreBtn.classList.add("hidden");
     }
+    spinier(false)
 }
 
 showMoreBtn.addEventListener("click", ()=>{
@@ -47,7 +62,7 @@ showMoreBtn.addEventListener("click", ()=>{
     showMoreBtn.classList.add("hidden");
 })
 
-
+//------------------ modal ---------------------
 function viewSpecification(id){
     fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
     .then(res => res.json())
@@ -69,4 +84,12 @@ function viewModal(data){
       `;
 
 
+}
+
+// spinier
+function spinier(view){
+    const spinier= document.getElementById("loading");
+    if(view){
+        spinier.classList.remove("hidden");
+    }else{spinier.classList.add("hidden");}
 }
